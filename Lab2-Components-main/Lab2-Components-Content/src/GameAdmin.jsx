@@ -10,23 +10,30 @@ export default class GameAdmin extends Component {
           playerName: "",
           active: "true",
           timesPlayed: "0"
-        }
+        },
+        playerTwo: {
+            playerName: "",
+            active: "true",
+            timesPlayed: "0"
+          }
       }
-      this.ChangePlayerName = this.ChangePlayerName.bind(this);
+      this.ChangePlayerNameOne = this.ChangePlayerNameOne.bind(this);
+      this.ChangePlayerNameTwo = this.ChangePlayerNameTwo.bind(this);
     }
     render() {
       return (
         <div>
           <Player playerNumber="One" playerName={this.state.playerOne.playerName}
             timesPlayed={this.state.playerOne.timesPlayed} />
-          <Player playerNumber="Two" playerName="gracz dwa" timesPlayed="0" />
+          <Player playerNumber="Two" playerName={this.state.playerTwo.playerName} 
+            timesPlayed={this.state.playerOne.timesPlayed} />
           <hr />
-          <PlayerPanel playerNumber="One" ChangePlayerName={this.ChangePlayerName} />
-          <PlayerPanel playerNumber="Two" ChangePlayerName={this.ChangePlayerName} />
+          <PlayerPanel playerNumber="One" ChangePlayerName={this.ChangePlayerNameOne} />
+          <PlayerPanel playerNumber="Two" ChangePlayerName={this.ChangePlayerNameTwo} />
         </div>
       );
     }
-    ChangePlayerName(event) {
+    ChangePlayerNameOne(event) {
       this.setState({
         playerOne: {
           playerName: event.target.value,
@@ -37,4 +44,15 @@ export default class GameAdmin extends Component {
       //   age: prevState.age + noOfYears
       // }));
     }
+    ChangePlayerNameTwo(event) {
+        this.setState({
+          playerTwo: {
+            playerName: event.target.value,
+            timesPlayed: this.state.playerTwo.timesPlayed
+          }
+        })
+        // this.setState((prevState, props) => ({
+        //   age: prevState.age + noOfYears
+        // }));
+      }
   }
