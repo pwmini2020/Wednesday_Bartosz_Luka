@@ -43,23 +43,22 @@ export default class GameAdmin extends Component {
         );
     }
     ChangePlayerNameOne(event) {
-        this.setState({
+        event.persist();
+        this.setState((prevState) => ({
             playerOne: {
+                ...prevState.playerOne,
                 playerName: event.target.value,
-
             }
-        })
-        // this.setState((prevState, props) => ({
-        //   age: prevState.age + noOfYears
-        // }));
+        }))
     }
     ChangePlayerNameTwo(event) {
-        this.setState({
+        event.persist();
+        this.setState((prevState) => ({
             playerTwo: {
+                ...prevState.playerTwo,
                 playerName: event.target.value,
-
             }
-        })
+        }))
     }
     Button1Click(e) {
         this.setState((prevState) => ({
