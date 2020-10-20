@@ -25,18 +25,22 @@ export default class GameAdmin extends Component {
     render() {
         return (
             <div>
-                <Player playerNumber="One" playerName={this.state.playerOne.playerName}
-                    timesPlayed={this.state.playerOne.timesPlayed}
-                    disabled={!this.state.playerOne.notPlaying}
-                    playButtonClicked={this.Button1Click}
-                    buttonText={this.state.playerOne.notPlaying ? "Play" : "This user is now playing"} />
-
-                <Player playerNumber="Two" playerName={this.state.playerTwo.playerName}
-                    timesPlayed={this.state.playerTwo.timesPlayed}
-                    disabled={!this.state.playerTwo.notPlaying}
-                    playButtonClicked={this.Button2Click}
-                    buttonText={this.state.playerTwo.notPlaying ? "Play" : "This user is now playing"} />
-                <hr />
+                <fieldset>
+                    <Player playerNumber="One" playerName={this.state.playerOne.playerName}
+                        timesPlayed={this.state.playerOne.timesPlayed}
+                        disabled={!this.state.playerOne.notPlaying}
+                        playButtonClicked={this.Button1Click}
+                        buttonText={this.state.playerOne.notPlaying ? "Play" : "This user is now playing"} />
+                </fieldset>
+                <br />
+                <fieldset>
+                    <Player playerNumber="Two" playerName={this.state.playerTwo.playerName}
+                        timesPlayed={this.state.playerTwo.timesPlayed}
+                        disabled={!this.state.playerTwo.notPlaying}
+                        playButtonClicked={this.Button2Click}
+                        buttonText={this.state.playerTwo.notPlaying ? "Play" : "This user is now playing"} />
+                </fieldset>
+                <br />
                 <PlayerPanel playerNumber="One" ChangePlayerName={this.ChangePlayerNameOne} />
                 <PlayerPanel playerNumber="Two" ChangePlayerName={this.ChangePlayerNameTwo} />
             </div>
