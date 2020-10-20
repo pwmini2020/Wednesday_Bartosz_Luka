@@ -10,13 +10,7 @@ export default function Player(props) {
             <p>
                 Played number of times: {props.timesPlayed}
             </p>
-            <button disabled={props.disabled}>Play</button>
+            <button disabled={props.disabled} onClick={props.playButtonClicked}>{props.buttonText}</button>
         </div>
     );
-}
-
-function PlayButtonClicked(e){
-    this.setState({
-        active: false
-    })
 }
