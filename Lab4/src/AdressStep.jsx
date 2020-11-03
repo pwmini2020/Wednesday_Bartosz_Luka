@@ -52,35 +52,44 @@ export default function AdressStep(props) {
                 props.nextStep()
         }
         //now check invoice info
+        else {
 
-        if (invoiceStreetName === '') {
-            setWrongInvoiceStreetName(true);
-            isCorrect = false;
+            if (invoiceStreetName === '') {
+                setWrongInvoiceStreetName(true);
+                isCorrect = false;
+            }
+            else
+                setWrongInvoiceStreetName(false);
+
+            if (invoiceZipCode === '' || !(/^[0-9]{2}-[0-9]{3}/.test(invoiceZipCode))) {
+                setWrongInvoiceZipCode(true);
+                isCorrect = false;
+            }
+            else
+                setWrongInvoiceZipCode(false);
+
+            if (invoiceCityName === '') {
+                setWrongInvoiceCityName(true);
+                isCorrect = false;
+            }
+            else
+                setWrongInvoiceCityName(false);
+
+
+
+            if (!isCorrect)
+                alert("fill all inputs");
+            else
+                props.nextStep()
+
         }
-        else
-            setWrongInvoiceStreetName(false);
+    }
 
-        if (invoiceZipCode === '' || !(/^[0-9]{2}-[0-9]{3}/.test(invoiceZipCode))) {
-            setWrongInvoiceZipCode(true);
-            isCorrect = false;
-        }
-        else
-            setWrongInvoiceZipCode(false);
-
-        if (invoiceCityName === '') {
-            setWrongInvoiceCityName(true);
-            isCorrect = false;
-        }
-        else
-            setWrongInvoiceCityName(false);
-
-
-
-        if (!isCorrect)
-            alert("fill all inputs");
-        else
-            props.nextStep()
-
+    function setInvoiceInfo(event) {
+        setIsInvoiceTheSameAsDelivery(event.target.checked);
+        setInvoiceStreetName(deliveryStreetName);
+        setInvoiceZipCode(deliveryZipCode);
+        setInvoiceCityName(deliveryCityName);
     }
 
     return (
@@ -103,6 +112,7 @@ export default function AdressStep(props) {
             Invoice address
             <br />
             <label>
+                <input type="checkbox" onChange={(event) => setInvoiceInfo(event)} />
                 keep the same as delivery
             </label>
             <form>
@@ -110,12 +120,12 @@ export default function AdressStep(props) {
                     placeholder="street" disabled={isInvoiceTheSameAsDelivery} />
                 {wrongInvoiceStreetName ? <span> Street name must not be empty</span> : null}
                 <br />
-                <input type="text" value={invoiceZipCode} onChange={(event) => setInvoiceZipCode(event.target.value)}
-                    placeholder="zip code (12-345)" />
+                <input type="text" value={isInvoiceTheSameAsDelivery ? deliveryZipCode : invoiceZipCode} onChange={(event) => setInvoiceZipCode(event.target.value)}
+                    placeholder="zip code (12-345)" disabled={isInvoiceTheSameAsDelivery} />
                 {wrongInvoiceZipCode ? <span> Wrong zip code! Accepted format is 12-345</span> : null}
                 <br />
-                <input type="text" value={invoiceCityName} onChange={(event) => setInvoiceCityName(event.target.value)}
-                    placeholder="city" />
+                <input type="text" value={isInvoiceTheSameAsDelivery ? deliveryCityName : invoiceCityName} onChange={(event) => setInvoiceCityName(event.target.value)}
+                    placeholder="city" disabled={isInvoiceTheSameAsDelivery} />
                 {wrongInvoiceCityName ? <span> City name must not be empty</span> : null}
             </form>
             <button onClick={clickNext}>Next</button>

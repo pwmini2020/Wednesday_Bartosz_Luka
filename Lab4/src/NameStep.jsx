@@ -43,13 +43,13 @@ export default function NameStep(props) {
             Name Step
             <form>
                 <input type="text" value={firstName} onChange={(event) => setFirstName(event.target.value)} placeholder="first name" />
-                {wrongFirstName ? <span>Wrong First Name!</span> : ''}
+                {wrongFirstName ? <span>Wrong First Name!</span> : null}
                 <br/>
                 <input type="text" value={lastName} onChange={(event) => setLastName(event.target.value)} placeholder="last name" />
-                {wrongLastName ? <span>Wrong Last Name!</span> : ''}
+                {wrongLastName ? <span>Wrong Last Name!</span> : null}
                 <br/>
                 <input type="text" value={emailAdress} onChange={(event) => setEmailAdress(event.target.value)} placeholder="email adress" />
-                {wrongEmailAdress ? <span>Wrong Email Adress!</span> : ''}
+                {wrongEmailAdress ? <span>Wrong Email Adress!</span> : null}
             </form>
             <button onClick={clickNext}>Next</button>
         </div>
