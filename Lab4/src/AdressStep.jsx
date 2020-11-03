@@ -20,6 +20,8 @@ export default function AdressStep(props) {
     const [wrongInvoiceZipCode, setWrongInvoiceZipCode] = useState(false);
     const [wrongInvoiceCityName, setWrongInvoiceCityName] = useState(false);
 
+
+
     function clickNext() {
         let isCorrect = true;
 
@@ -128,7 +130,7 @@ export default function AdressStep(props) {
                     placeholder="city" disabled={isInvoiceTheSameAsDelivery} />
                 {wrongInvoiceCityName ? <span> City name must not be empty</span> : null}
             </form>
-            <button onClick={clickNext}>Next</button>
+            <button onClick={clickNext}>Back</button>
         </div>
     );
 }
