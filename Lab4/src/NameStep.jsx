@@ -1,54 +1,52 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 
-export default function NameStep(props)
-{
-    const [firstName,setFirstName]  = useState('');
-    const [lastName,setLastName]  = useState('');
-    const [emailAdress,setEmailAdress]  = useState('');
+export default function NameStep(props) {
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [emailAdress, setEmailAdress] = useState('');
 
-    const [wrongFirstName,setWrongFirstName]  = useState(false);
-    const [wrongLastName,setWrongLastName]  = useState(false);
-    const [wrongEmailAdress,setWrongEmailAdress]  = useState(false);
+    const [wrongFirstName, setWrongFirstName] = useState(false);
+    const [wrongLastName, setWrongLastName] = useState(false);
+    const [wrongEmailAdress, setWrongEmailAdress] = useState(false);
 
-    function clickNext()
-    {
+    function clickNext() {
         let ok = true;
-        if(firstName === ''){
+        if (firstName === '') {
             setWrongFirstName(true);
-            ok=false;
+            ok = false;
         }
-        else 
+        else
             setWrongFirstName(false);
 
-        if(lastName === ''){
+        if (lastName === '') {
             setWrongLastName(true);
-            ok=false;
+            ok = false;
         }
-        else 
+        else
             setWrongLastName(false);
 
-        if(emailAdress === '' || !(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(emailAdress))){
+        if (emailAdress === '' || !(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(emailAdress))) {
             setWrongEmailAdress(true);
-            ok=false;
+            ok = false;
         }
-        else 
+        else
             setWrongEmailAdress(false);
-        
-        if(!ok)
+
+        if (!ok)
             alert("fill all inputs");
         else
             props.nextStep()
     }
 
-    return(
+    return (
         <div>
             Name Step
             <form>
-                <input type="text" value={firstName} onChange={(event) => setFirstName(event.target.value)} placeholder="first name"></input>
+                <input type="text" value={firstName} onChange={(event) => setFirstName(event.target.value)} placeholder="first name" />
                 {wrongFirstName ? <span>Wrong First Name!</span> : ''}
-                <input type="text" value={lastName} onChange={(event) => setLastName(event.target.value)} placeholder="last name"></input>
+                <input type="text" value={lastName} onChange={(event) => setLastName(event.target.value)} placeholder="last name" />
                 {wrongLastName ? <span>Wrong Last Name!</span> : ''}
-                <input type="text" value={emailAdress} onChange={(event) => setEmailAdress(event.target.value)} placeholder="email adress"></input>
+                <input type="text" value={emailAdress} onChange={(event) => setEmailAdress(event.target.value)} placeholder="email adress" />
                 {wrongEmailAdress ? <span>Wrong Email Adress!</span> : ''}
             </form>
             <button onClick={clickNext}>Next</button>
