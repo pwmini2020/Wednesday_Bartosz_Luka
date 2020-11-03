@@ -10,29 +10,29 @@ export default function NameStep(props) {
     const [wrongEmailAdress, setWrongEmailAdress] = useState(false);
 
     function clickNext() {
-        let ok = true;
+        let isCorrect = true;
         if (firstName === '') {
             setWrongFirstName(true);
-            ok = false;
+            isCorrect = false;
         }
         else
             setWrongFirstName(false);
 
         if (lastName === '') {
             setWrongLastName(true);
-            ok = false;
+            isCorrect = false;
         }
         else
             setWrongLastName(false);
 
         if (emailAdress === '' || !(/^[a-zA-Z0-9]+@[a-zA-Z0-9]+\.[A-Za-z]+$/.test(emailAdress))) {
             setWrongEmailAdress(true);
-            ok = false;
+            isCorrect = false;
         }
         else
             setWrongEmailAdress(false);
 
-        if (!ok)
+        if (!isCorrect)
             alert("fill all inputs");
         else
             props.nextStep()
@@ -44,8 +44,10 @@ export default function NameStep(props) {
             <form>
                 <input type="text" value={firstName} onChange={(event) => setFirstName(event.target.value)} placeholder="first name" />
                 {wrongFirstName ? <span>Wrong First Name!</span> : ''}
+                <br/>
                 <input type="text" value={lastName} onChange={(event) => setLastName(event.target.value)} placeholder="last name" />
                 {wrongLastName ? <span>Wrong Last Name!</span> : ''}
+                <br/>
                 <input type="text" value={emailAdress} onChange={(event) => setEmailAdress(event.target.value)} placeholder="email adress" />
                 {wrongEmailAdress ? <span>Wrong Email Adress!</span> : ''}
             </form>
