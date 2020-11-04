@@ -4,35 +4,64 @@ import React from 'react'
 
 export default function First() {
     function canIGoOutNow() {
-        const p1 = getWeatherFromMeteo();
-        p1.then(result => {
+        Promise.race([
+            getWeatherFromMeteo(),
+            getWeatherFromOnet(),
+            getWeatherFromGoogle()
+        ]).then(result => {
             console.log("can I go out now?", result);
+        }).catch(result=>{
+            console.log("catch", result);
         })
     }
 
-    function getCurrentTime(result, seconds) {
+    function getCurrentTime(result, seconds, source, shouldFail) {
+        console.log(source, "getCurrentTime start");
         return new Promise((resolve, reject) => {
+            console.log(source, "getCurrentTime before timeout")
             setTimeout(() => {
-                resolve(result);
+                if (shouldFail) {
+                    console.log(source, "getCurrentTime in timeout FAILED")
+                    reject({ result, source });
+                }
+                else {
+                    console.log(source, "getCurrentTime in timeout")
+                    resolve({ result, source });
+                }
             }, 1000 * seconds);
         })
     }
 
 
-    function getMyLocation(result, seconds) {
+    function getMyLocation(result, seconds, source) {
+        console.log(source, "getMyLocation start");
         return new Promise((resolve, reject) => {
+            console.log(source, "getMyLocation before timeout")
             setTimeout(() => {
-                resolve(result);
+                console.log(source, "getMyLocation in timeout")
+                resolve({ result, source });
             }, 1000 * seconds);
         })
     }
 
     function getWeatherFromMeteo() {
-        // const p1 = getCurrentTime(true, 2);
-        // const p2 = getMyLocation(true, 3);
         return Promise.all([
-            getCurrentTime(true, 2),
-            getMyLocation(true, 3)
+            getCurrentTime(true, 2, "Meteo"),
+            getMyLocation(true, 3, "Meteo")
+        ])
+    }
+
+    function getWeatherFromOnet() {
+        return Promise.all([
+            getCurrentTime(true, 4, "Onet"),
+            getMyLocation(true, 2, "Onet")
+        ])
+    }
+
+    function getWeatherFromGoogle() {
+        return Promise.all([
+            getCurrentTime(true, 1, "Google", true),
+            getMyLocation(true, 1, "Google")
         ])
     }
 
