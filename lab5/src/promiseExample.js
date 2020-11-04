@@ -22,6 +22,7 @@ const p2 = new Promise((resolve, reject) => {
 Promise.race([p1,p2]).then((result) => {
     console.log(result)
 }).catch(message => {
+})
 
 Promise.all([p1, p2]).then((results) => {
     console.log(results)
