@@ -13,7 +13,14 @@ export default class CarsList extends Component {
         this.deleteCarItem = this.deleteCarItem.bind(this);
         // this.filterCars = this.filterCars.bind(this);
         this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
+        this.editCarItem = this.editCarItem.bind(this);
     }
+    componentDidMount() {
+        // carsData.forEach(car => {
+        //     this.state.cars.push({car, editTurnedOn: false})
+        // });
+    }
+
     deleteCarItem(car) {
         console.log(car);
         this.setState({ cars: this.state.cars.filter(c => c !== car) });
@@ -25,14 +32,20 @@ export default class CarsList extends Component {
             cars: this.state.cars.filter(c => c.name !== this.state.searchString)
         });
     }
+
+    editCarItem(car) {
+
+    }
     render() {
         return (
             <div>
                 <FilterBox filterText={this.state.filterBoxValue}
                     onFilterTextChange={this.handleFilterTextChange} />
                 {this.state.cars.map((car) =>
-                    <CarItem car={car} clicked={this.deleteCarItem} 
-                    filterText={this.state.filterBoxValue.toLocaleLowerCase()} />)}
+                    <CarItem car={car} onDeleteClicked={this.deleteCarItem}
+                        onEditClicked={this.editCarItem}
+                        filterText={this.state.filterBoxValue.toLocaleLowerCase()}
+                        />)}
             </div>
         )
     }

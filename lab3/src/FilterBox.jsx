@@ -17,7 +17,6 @@ export default class FilterBox extends Component {
             <div>
                 <input type="text" placeholder="filter"
                     value={this.props.filterText} onChange={this.handleFilterTextChange} />
-                {/* <button>Filter</button> */}
             </div>
         );
     }

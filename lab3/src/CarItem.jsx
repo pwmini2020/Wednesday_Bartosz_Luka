@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
 
 export default class CarItem extends Component {
+    constructor(props) {
+        super(props);
+
+    }
+    handleEditButton(event){
+        this.props.onEditClicked(event.target.value);
+    }
 
     render() {
         return (
@@ -19,7 +26,8 @@ export default class CarItem extends Component {
                     {this.props.car.pricePerDay}
                             </label>
                             <br />
-                            <button onClick={() => this.props.clicked(this.props.car)}>delete</button>
+                            <button onClick={() => this.props.onDeleteClicked(this.props.car)}>delete</button>
+                            {/* <button onClick={() =>this.props.onEditClicked(this.props.car)}>edit price</button> */}
                         </fieldset>
                         : null
                 }
