@@ -8,33 +8,31 @@ export default class CarsList extends Component {
         super(props);
         this.state = {
             cars: carsData,
-            searchString: '',
             filterBoxValue: ''
         };
         this.deleteCarItem = this.deleteCarItem.bind(this);
-        this.filterCars = this.filterCars.bind(this);
+        // this.filterCars = this.filterCars.bind(this);
+        this.handleFilterTextChange = this.handleFilterTextChange.bind(this);
     }
     deleteCarItem(car) {
         console.log(car);
         this.setState({ cars: this.state.cars.filter(c => c !== car) });
     }
 
-    filterCars() {
-        this.setState((prevState) => ({
-            searchString: prevState.filterBoxValue,
+    handleFilterTextChange(filterText) {
+        this.setState({
+            filterBoxValue: filterText,
             cars: this.state.cars.filter(c => c.name !== this.state.searchString)
-        }));
-        console.log(this.state.searchString);
+        });
     }
-
     render() {
         return (
             <div>
-                {/* <FilterBox onFilterChange={this.filterCars}/> */}
-                <input type="text" placeholder="Filter cars" value={this.state.filterBoxValue}
-                    onChange={this.filterCars} />
+                <FilterBox filterText={this.state.filterBoxValue}
+                    onFilterTextChange={this.handleFilterTextChange} />
                 {this.state.cars.map((car) =>
-                    <CarItem car={car} clicked={this.deleteCarItem} />)}
+                    <CarItem car={car} clicked={this.deleteCarItem} 
+                    filterText={this.state.filterBoxValue.toLocaleLowerCase()} />)}
             </div>
         )
     }
