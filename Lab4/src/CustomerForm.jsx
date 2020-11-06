@@ -6,6 +6,8 @@ import SummaryStep from './SummaryStep.jsx'
 export default function CustomerForm() {
     const [activeStep, setActiveStep] = useState(0);
 
+
+    
     const nextStep = () => {
         setActiveStep(activeStep + 1);
     }

@@ -130,7 +130,7 @@ export default function AdressStep(props) {
                     placeholder="city" disabled={isInvoiceTheSameAsDelivery} />
                 {wrongInvoiceCityName ? <span> City name must not be empty</span> : null}
             </form>
-            <button onClick={clickNext}>Back</button>
+            <button onClick={clickNext}>Next</button>
         </div>
     );
 }
