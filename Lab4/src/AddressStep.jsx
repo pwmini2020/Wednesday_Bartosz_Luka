@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-export default function AdressStep(props) {
+export default function AddressStep(props) {
 
     const [deliveryStreetName, setDeliveryStreetName] = useState('');
     const [deliveryZipCode, setDeliveryZipCode] = useState('');
