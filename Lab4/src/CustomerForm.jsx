@@ -42,7 +42,18 @@ export default function CustomerForm() {
                         invoiceZipCode={invoiceZipCode} setInvoiceZipCode={setInvoiceZipCode}
                         invoiceCityName={invoiceCityName} setInvoiceCityName={setInvoiceCityName}
                     />
-                    : <SummaryStep />
+                    : <SummaryStep 
+                    firstName={firstName}
+                    lastName={lastName}
+                    emailAddress={emailAddress}
+                    deliveryStreetName={deliveryStreetName}
+                    deliveryZipCode={deliveryZipCode}
+                    deliveryCityName={deliveryCityName}
+                    isInvoiceTheSameAsDelivery={isInvoiceTheSameAsDelivery}
+                    invoiceStreetName={invoiceStreetName}
+                    invoiceZipCode={invoiceZipCode}
+                    invoiceCityName={invoiceCityName}
+                    />
             }
         </div>
     );
