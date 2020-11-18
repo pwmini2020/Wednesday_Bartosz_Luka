@@ -5,27 +5,26 @@ import {
   Route,
   Link
 } from 'react-router-dom';
+// import EditCar from './EditCar';
+import CarsList from './CarsList';
 
-const Home = ()=>(<h1>Home</h1>)
-const CarsList = ()=>(<h1>CarsList</h1>)
-const About = ()=>(<h1>About</h1>)
+const Home = () => (<h1>Home</h1>)
+const About = () => (<h1>About</h1>)
 
-function App() {
-  return (
-    <Router>
-      <Switch>
-        <Route exact path="/">
-          <Home />
-        </Route>
-        <Route path="/about">
-          <About />
-        </Route>
-        <Route path="/carsList">
-          <CarsList />
-        </Route>
-      </Switch>
-    </Router>
-    );
-}
+const App = () => (
+  <Router>
+    <Switch>
+      <Route exact path="/">
+        <Home />
+      </Route>
+      <Route path="/about">
+        <About />
+      </Route>
+      <Route path="/carsList">
+        <CarsList />
+      </Route>
+    </Switch>
+  </Router>
+)
 
 export default App;
