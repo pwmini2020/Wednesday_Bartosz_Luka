@@ -11,6 +11,7 @@ function App() {
   return (
     <Provider store={store}>
       <Board width={10} height={10} />
+      <button>click</button>
     </Provider>
   );
 }
