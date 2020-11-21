@@ -2,19 +2,17 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Tile from './Tile';
 
+
 const mapStateToProps = (state) => {
     return { snake: state.snake }
 }
-const mapDispatchToProps = (state) =>{
+const mapDispatchToProps = (dispatch) =>{
     moveLeft: ()=> dispatch({type:"MOVE_LEFT"})
 }
 
-export class Board extends React.Component {
-    render() {
-        return this.paintBoard().map(col => col.map(color=> {<Tile color={color} />}))
+export function Board() {
     
-    }
-    paintBoard(){
+    function paintBoard(){
         let grid = new Array(this.props.width);
         for (let i = 0; i < this.props.width; i++){
             grid[i]= new Array(this.props.height);
@@ -24,6 +22,7 @@ export class Board extends React.Component {
         }
         return grid;
     }
+    return this.paintBoard().map(col => col.map(color=> {<Tile color={color} />}))
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board)
