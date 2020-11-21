@@ -22,7 +22,7 @@ export function Board(props) {
         }
         for (let i = 0; i < props.width; i++) {
             for (let j = 0; j < props.height; j++) {
-                grid[i][j] = 'gray';
+                grid[i][j] = 'lightgray';
             }
         }
         for (let s in props.snake) {
