@@ -4,7 +4,9 @@ import Tile from './Tile';
 
 
 const mapStateToProps = (state) => {
-    return { snake: state.snake }
+    return {
+        snake: state.snake
+    }
 }
 const mapDispatchToProps = (dispatch) => ({
     moveLeft: () => dispatch({ type: "MOVE_LEFT" })
@@ -30,11 +32,35 @@ export function Board(props) {
         }
         return grid;
     }
-    return paintBoard().map(column =>
-        <span style={{"padding":"0px", "margin":"0px", }}>
-            {column.map(row => <Tile color={row} />)}
-            <br/>
-        </span>)
+    function moveLeft() {
+        return { type: "MOVE_LEFT" }
+    }
+    const handleKeyPress = (event) => {
+        // event.preventDefault();
+        // if (event.key === 'Enter') {
+        //     console.log('enter press here! ')
+        // }
+        switch (event.key) {
+            case 'w':
+                return { type: "MOVE_UP" }
+            case 'a':
+                return { type: "MOVE_LEFT" }
+            case 's':
+                return { type: "MOVE_DOWN" }
+            case 'd':
+                return { type: "MOVE_RIGHT" }
+
+        }
+    }
+    return (
+        <div focused={true} onKeyPress={e => props.dispatch( handleKeyPress(e))}>
+            {paintBoard().map(column =>
+                <div style={{ "padding": "0px", "margin": "0px", }}>
+                    {column.map(row => <Tile color={row} />)}
+                </div>)}
+            <button>start</button>
+        </div>
+    )
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Board)

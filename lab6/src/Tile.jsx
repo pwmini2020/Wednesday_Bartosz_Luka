@@ -5,7 +5,9 @@ export default function Tile(props) {
         <div style={{
             "width":30, 
             "height":30, 
-            "background-color":props.color,
+            "padding":0,
+            "margin":0, 
+            "backgroundColor":props.color,
             "display": "inline-block",
             "border": "1px solid black",
             }}>
