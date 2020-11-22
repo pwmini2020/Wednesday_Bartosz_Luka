@@ -35,25 +35,29 @@ export function Board(props) {
     function moveLeft() {
         return { type: "MOVE_LEFT" }
     }
-    const handleKeyPress = (event) => {
+    function handleKeyPress(event) {
         // event.preventDefault();
         // if (event.key === 'Enter') {
         //     console.log('enter press here! ')
         // }
         switch (event.key) {
             case 'w':
-                return { type: "MOVE_UP" }
+                props.dispatch({ type: "MOVE_UP" })
+                break;
             case 'a':
-                return { type: "MOVE_LEFT" }
+                props.dispatch({ type: "MOVE_LEFT" })
+                break;
             case 's':
-                return { type: "MOVE_DOWN" }
+                props.dispatch({ type: "MOVE_DOWN" })
+                break;
             case 'd':
-                return { type: "MOVE_RIGHT" }
+                props.dispatch({ type: "MOVE_RIGHT" })
+                break;
 
         }
     }
     return (
-        <div focused={true} onKeyPress={e => props.dispatch( handleKeyPress(e))}>
+        <div focused={true} onKeyPress={e => handleKeyPress(e)}>
             {paintBoard().map(column =>
                 <div style={{ "padding": "0px", "margin": "0px", }}>
                     {column.map(row => <Tile color={row} />)}

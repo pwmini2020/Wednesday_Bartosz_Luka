@@ -4,13 +4,18 @@ export default function snakeReducer(state = {
 }, action) {
     switch (action.type) {
         case "MOVE_LEFT":
-            // alert("RUSZA SIE");
-            return {snake:[{ x: 0, y: 0 }]}
-            // if (state.snake[0][1] === 0)
-            //     return state;
-            // else
-            //     return { ...state, snake: [state.snake.push({ x: 0, y: 0 })] };
-        // break;
+            // return { ...state, snake: [...state.snake, state.snake.push({ x: 0, y: 1 })] };
+            console.log('lewo');
+            return state;
+        case "MOVE_RIGHT":
+            console.log("prawo")
+            return state;
+        case "MOVE_UP":
+            console.log("gora")
+            return state;
+        case "MOVE_DOWN":
+            console.log("dol")
+            return state;
         default:
             return state;
     }
