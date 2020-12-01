@@ -5,7 +5,8 @@ export default function NewEmployee(props) {
     const [age, setAge] = useState("");
     const [company, setCompany] = useState("");
     const [email, setEmail] = useState("");
-
+    const [isPosting, setIsPosting] = useState(false);
+    // const [showForm, setShowForm] = useState(true);
     const post = (employee) => fetch("http://localhost:3004/employees", {
         method: "POST",
         body: JSON.stringify(employee),
@@ -16,17 +17,28 @@ export default function NewEmployee(props) {
     }).catch(error => console.log('error', error));
 
     function create() {
-        post({ name, age, company, email, isActive: true, })
+        setIsPosting(true);
+        let postPromise = post({ name, age, company, email, isActive: true, });
+        postPromise.then(() => {
+            props.setShowForm(false);
+            setIsPosting(false);
+        }).then(() => props.fun())
     }
 
     return (
         <div>
-            {/* <FormElement placeholder="name" value={name} onChange={setName} /> */}
-            <input type="text" placeholder="name" onChange={(e) => setName(e.target.value)} />
-            <input type="text" placeholder="age" onChange={(e) => setAge(e.target.value)} />
-            <input type="text" placeholder="company" onChange={(e) => setCompany(e.target.value)} />
-            <input type="text" placeholder="email" onChange={(e) => setEmail(e.target.value)} />
-            <button onClick={create}>add</button>
+            {
+                !props.showForm ? null :
+                    isPosting ?
+                        <span>posting...</span> :
+                        <div>
+                            <FormElement placeholder="name" value={name} set={setName} />
+                            <FormElement placeholder="age" value={age} set={setAge} />
+                            <FormElement placeholder="company" value={company} set={setCompany} />
+                            <FormElement placeholder="email" value={email} set={setEmail} />
+                            <button onClick={create}>add</button>
+                        </div>
+            }
         </div>
     )
 }

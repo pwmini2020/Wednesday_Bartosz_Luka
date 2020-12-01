@@ -65,54 +65,6 @@
       "email": "rossdickerson@proxsoft.com"
     },
     {
-      "id": "5dc9bdc6485ccfcec093eb67",
-      "isActive": false,
-      "age": 25,
-      "name": "Mcdonald Hubbard",
-      "company": "PAPRICUT",
-      "email": "mcdonaldhubbard@papricut.com"
-    },
-    {
-      "id": "5dc9bdc6d54eb99cb821fb5f",
-      "isActive": false,
-      "age": 24,
-      "name": "Joyce West",
-      "company": "FANFARE",
-      "email": "joycewest@fanfare.com"
-    },
-    {
-      "id": "5dc9bdc64424815d04e10c50",
-      "isActive": true,
-      "age": 27,
-      "name": "Bettie Banks",
-      "company": "NSPIRE",
-      "email": "bettiebanks@nspire.com"
-    },
-    {
-      "id": "5dc9bdc68e268a789771e9da",
-      "isActive": false,
-      "age": 30,
-      "name": "Trudy Bauer",
-      "company": "COMTEXT",
-      "email": "trudybauer@comtext.com"
-    },
-    {
-      "id": "5dc9bdc6b62ea8498f1e2da4",
-      "isActive": true,
-      "age": 39,
-      "name": "Raquel Walter",
-      "company": "PROSURE",
-      "email": "raquelwalter@prosure.com"
-    },
-    {
-      "id": "5dc9bdc6759d1f047616ed7e",
-      "isActive": true,
-      "age": 34,
-      "name": "Beulah Michael",
-      "company": "EXOSIS",
-      "email": "beulahmichael@exosis.com"
-    },
-    {
       "id": "5dc9bdc669395dcbe481c1b5",
       "isActive": false,
       "age": 38,
@@ -135,61 +87,6 @@
       "name": "Silva Beasley",
       "company": "ZILLAN",
       "email": "silvabeasley@zillan.com"
-    },
-    {
-      "id": "5dc9bdc65720bf0a00dc0ca4",
-      "isActive": false,
-      "age": 39,
-      "name": "Rosanna Newman",
-      "company": "EXIAND",
-      "email": "rosannanewman@exiand.com"
-    },
-    {
-      "id": "5dc9bdc63d783442fbd22b38",
-      "isActive": true,
-      "age": 30,
-      "name": "Maricela Wolf",
-      "company": "APEXTRI",
-      "email": "maricelawolf@apextri.com"
-    },
-    {
-      "isActive": true,
-      "age": 30,
-      "name": "Lukasz",
-      "company": "APEXTRI",
-      "email": "maricelawolf@apextri.com",
-      "id": "7nUujVr"
-    },
-    {
-      "id": "5555555555555",
-      "isActive": true,
-      "age": 30,
-      "name": "Lukasz 1",
-      "company": "APEXTRI",
-      "email": "maricelawolf@apextri.com"
-    },
-    {
-      "name": "newname",
-      "age": "",
-      "company": "",
-      "email": "",
-      "id": "aSZ5oxD"
-    },
-    {
-      "name": "Bartosz Łuka",
-      "age": "23",
-      "company": "aaaaaa",
-      "email": "bartoszluka1@gmail.com",
-      "isActive": true,
-      "id": "rNwmivC"
-    },
-    {
-      "name": "23",
-      "age": "23",
-      "company": "aaaaaa",
-      "email": "bartoszluka1@gmail.com",
-      "isActive": true,
-      "id": "Wst6Y5H"
     }
   ]
 }
