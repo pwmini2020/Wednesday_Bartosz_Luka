@@ -15,51 +15,27 @@ export default function NewEmployee(props) {
         },
     }).catch(error => console.log('error', error));
 
-    const create = (e) => {
-        e.preventDefault();
+    function create() {
+        post({ name, age, company, email, isActive: true, })
     }
 
     return (
         <div>
-            <form>
-                <div>
-                    <div>
-                        <label htmlFor="name">
-                            <span>Name:</span>
-                            <input type="text" placeholder="name" />
-                        </label>
-                    </div>
-                    <div>
-                        <label htmlFor="age">
-                            <span>Age:</span>
-                            <input type="text" placeholder="age" />
-                        </label>
-                    </div>
-                    <div>
-                        <label htmlFor="company">
-                            <span>Company:</span>
-                            <input type="text" placeholder="company" />
-                        </label>
-                    </div>
-                    <div>
-                        <label htmlFor="email">
-                            <span>Email:</span>
-                            <input type="text" placeholder="email" />
-                        </label>
-                    </div>
-
-                </div>
-                <div>
-                    <button onClick={(e) => create(e)}>add</button>
-                </div>
-            </form>
+            {/* <FormElement placeholder="name" value={name} onChange={setName} /> */}
+            <input type="text" placeholder="name" onChange={(e) => setName(e.target.value)} />
+            <input type="text" placeholder="age" onChange={(e) => setAge(e.target.value)} />
+            <input type="text" placeholder="company" onChange={(e) => setCompany(e.target.value)} />
+            <input type="text" placeholder="email" onChange={(e) => setEmail(e.target.value)} />
+            <button onClick={create}>add</button>
         </div>
     )
 }
 
-// const formelement = (value) => (<div>
-//     <label htmlFor={value}>
-//         <span>{value}</span>
-//         <input type="text" placeholder={value} />
-//     </label>
-// </div>)
+const FormElement = (props) => (<div>
+    <label htmlFor={props.placeholder}>
+        <span>{props.placeholder}:</span>
+        <input type="text" placeholder={props.placeholder}
+            value={props.value}
+            onChange={(e) => props.set(e.target.value)} />
+    </label>
+</div>)
