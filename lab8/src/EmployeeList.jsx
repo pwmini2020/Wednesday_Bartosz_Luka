@@ -1,4 +1,10 @@
 import React, { useState, useEffect } from 'react'
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+} from 'react-router-dom';
 
 export default function EmployeeList(props) {
     const [isLoading, setIsLoading] = useState(false);
@@ -11,13 +17,18 @@ export default function EmployeeList(props) {
             .then(response => setEmployees(response))
             .then(() => setIsLoading(false))
     }, [setIsLoading, setEmployees]);
+    console.log()
     return (
         <div>
             {
                 isLoading ?
                     <label>Loading...</label>
-                    :
-                    employees.map(employee => <div>{employee.name}</div>)
+                    : <div>
+                        <ul>{employees.map(employee => <li>{employee.name}</li>)}</ul>
+                        <button>
+                            <Link to={`/employees/new`}>Add employee</Link>
+                        </button>
+                    </div>
             }
         </div>
     )

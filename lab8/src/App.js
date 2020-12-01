@@ -6,9 +6,19 @@ import {
   Link
 } from 'react-router-dom';
 import EmployeeList from './EmployeeList'
+import NewEmployee from './NewEmployee'
 function App() {
   return (
-    <EmployeeList />
+    <Router>
+      <Switch>
+        <Route exact path="/">
+          <EmployeeList />
+        </Route>
+      </Switch>
+      <Route path="/employees/new">
+        <NewEmployee />
+      </Route>
+    </Router>
   );
 }
 
