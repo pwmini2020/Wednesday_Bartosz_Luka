@@ -5,6 +5,8 @@ import {
     Route,
     Link
 } from 'react-router-dom';
+import './styles.css'
+import Employee from './EmployeeItem'
 import NewEmployee from './NewEmployee'
 export default function EmployeeList(props) {
     const [isLoading, setIsLoading] = useState(false);
@@ -19,7 +21,7 @@ export default function EmployeeList(props) {
             .then(() => setIsLoading(false))
     }, [setIsLoading, setEmployees]);
 
-    function gget() {
+    function fetchData() {
         setIsLoading(true);
         let promise = fetch(url);
         promise.then((response) => response.json())
@@ -32,38 +34,24 @@ export default function EmployeeList(props) {
                 isLoading ?
                     <label>Loading...</label>
                     : <div>
-                        {employees.map(employee => <Employee
-                            eid={employee.id} name={employee.name} fun={gget} />)}
-                        <div>
-                            {
-                                showForm ?
-                                    <NewEmployee showForm={showForm}
-                                        setShowForm={setShowForm} fun={gget} />
-                                    :
-                                    <button onClick={() => setShowForm(true)}>add
+                        <table className={"employeeTable"}>
+                            {employees.map(employee =>
+                                <Employee key={employee.id} eid={employee.id} name={employee.name} reloadData={fetchData} />)}
+                        </table>
+                        <br></br>
+
+                        {
+                            showForm ?
+                                <NewEmployee showForm={showForm}
+                                    setShowForm={setShowForm} fun={fetchData} />
+                                :
+                                <button onClick={() => setShowForm(true)}>add
                                     {/* <Link to={`/employees/new`}>Add employee</Link> */}
-                                    </button>
-                            }
-                        </div>
+                                </button>
+                        }
+
                     </div>
             }
         </div >
-    )
-}
-
-function Employee(props) {
-    function del(id) {
-        const url = "http://localhost:3004/employees"
-        let delPromise = fetch(url + '/' + id, { method: 'DELETE' }).
-            then(() => console.log(id))
-            .then(() => props.fun())
-    }
-    return (
-        <div>
-            <label>{props.name}</label>
-            <button onClick={() => del(props.eid)}>
-                delete
-            </button>
-        </div>
     )
 }

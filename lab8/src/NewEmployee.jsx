@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-
+import './styles.css'
 export default function NewEmployee(props) {
     const [name, setName] = useState("");
     const [age, setAge] = useState("");
@@ -30,24 +30,37 @@ export default function NewEmployee(props) {
             {
                 !props.showForm ? null :
                     isPosting ?
-                        <span>posting...</span> :
-                        <div>
+                        <span>Saving...</span> :
+                        <table className={"employeeTable"}>
                             <FormElement placeholder="name" value={name} set={setName} />
                             <FormElement placeholder="age" value={age} set={setAge} />
                             <FormElement placeholder="company" value={company} set={setCompany} />
                             <FormElement placeholder="email" value={email} set={setEmail} />
-                            <button onClick={create}>add</button>
-                        </div>
+                            <tr>
+                                <td>
+                                    <button onClick={create}>add</button>
+                                </td>
+                                <td>
+                                    <button onClick={() => props.setShowForm(false)}>cancel</button>
+                                </td>
+                            </tr>
+                        </table>
             }
         </div>
     )
 }
 
-const FormElement = (props) => (<div>
-    <label htmlFor={props.placeholder}>
-        <span>{props.placeholder}:</span>
-        <input type="text" placeholder={props.placeholder}
-            value={props.value}
-            onChange={(e) => props.set(e.target.value)} />
-    </label>
-</div>)
+const FormElement = (props) => (
+    <tr>
+        <td>
+            {/* <label htmlFor={props.placeholder}> */}
+            <span>{props.placeholder}:</span>
+        </td>
+        <td>
+            <input type="text" placeholder={props.placeholder}
+                value={props.value}
+                onChange={(e) => props.set(e.target.value)} />
+        </td>
+        {/* </label> */}
+    </tr>
+)
