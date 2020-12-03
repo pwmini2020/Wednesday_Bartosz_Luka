@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import './styles.css'
+
 export default function NewEmployee(props) {
     const [name, setName] = useState("");
     const [age, setAge] = useState("");
     const [company, setCompany] = useState("");
     const [email, setEmail] = useState("");
     const [isPosting, setIsPosting] = useState(false);
-    // const [showForm, setShowForm] = useState(true);
+
     const post = (employee) => fetch("http://localhost:3004/employees", {
         method: "POST",
         body: JSON.stringify(employee),
@@ -19,10 +20,11 @@ export default function NewEmployee(props) {
     function create() {
         setIsPosting(true);
         let postPromise = post({ name, age, company, email, isActive: true, });
-        postPromise.then(() => {
-            props.setShowForm(false);
-            setIsPosting(false);
-        }).then(() => props.fun())
+        postPromise.then(() =>
+            props.setShowForm(false))
+            .then(() => setIsPosting(false))
+            .then(() => props.reloadData())
+            .catch(err => console.log(err))
     }
 
     return (
@@ -36,31 +38,35 @@ export default function NewEmployee(props) {
                             <FormElement placeholder="age" value={age} set={setAge} />
                             <FormElement placeholder="company" value={company} set={setCompany} />
                             <FormElement placeholder="email" value={email} set={setEmail} />
-                            <tr>
-                                <td>
-                                    <button onClick={create}>add</button>
-                                </td>
-                                <td>
-                                    <button onClick={() => props.setShowForm(false)}>cancel</button>
-                                </td>
-                            </tr>
+                            <tbody>
+
+                                <tr>
+                                    <td>
+                                        <button onClick={create}>add</button>
+                                    </td>
+                                    <td>
+                                        <button onClick={() => props.setShowForm(false)}>cancel</button>
+                                    </td>
+                                </tr>
+                            </tbody>
                         </table>
             }
         </div>
     )
 }
-
 const FormElement = (props) => (
-    <tr>
-        <td>
-            {/* <label htmlFor={props.placeholder}> */}
-            <span>{props.placeholder}:</span>
-        </td>
-        <td>
-            <input type="text" placeholder={props.placeholder}
-                value={props.value}
-                onChange={(e) => props.set(e.target.value)} />
-        </td>
-        {/* </label> */}
-    </tr>
+    <tbody>
+        <tr>
+            <td>
+                {/* <label htmlFor={props.placeholder}> */}
+                <span>{props.placeholder}:</span>
+            </td>
+            <td>
+                <input type="text" placeholder={props.placeholder}
+                    value={props.value}
+                    onChange={(e) => props.set(e.target.value)} />
+            </td>
+            {/* </label> */}
+        </tr>
+    </tbody>
 )

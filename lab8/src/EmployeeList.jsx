@@ -14,11 +14,7 @@ export default function EmployeeList(props) {
     const [showForm, setShowForm] = useState(false);
     const url = "http://localhost:3004/employees"
     useEffect(() => {
-        setIsLoading(true);
-        let promise = fetch(url);
-        promise.then((response) => response.json())
-            .then(response => setEmployees(response))
-            .then(() => setIsLoading(false))
+        fetchData();
     }, [setIsLoading, setEmployees]);
 
     function fetchData() {
@@ -43,7 +39,7 @@ export default function EmployeeList(props) {
                         {
                             showForm ?
                                 <NewEmployee showForm={showForm}
-                                    setShowForm={setShowForm} fun={fetchData} />
+                                    setShowForm={setShowForm} reloadData={fetchData} />
                                 :
                                 <button onClick={() => setShowForm(true)}>add
                                     {/* <Link to={`/employees/new`}>Add employee</Link> */}
