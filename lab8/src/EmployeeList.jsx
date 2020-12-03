@@ -1,13 +1,9 @@
 import React, { useState, useEffect } from 'react'
-import {
-    BrowserRouter as Router,
-    Switch,
-    Route,
-    Link
-} from 'react-router-dom';
+
 import './styles.css'
 import Employee from './EmployeeItem'
 import NewEmployee from './NewEmployee'
+
 export default function EmployeeList(props) {
     const [isLoading, setIsLoading] = useState(false);
     const [employees, setEmployees] = useState([]);
@@ -41,9 +37,7 @@ export default function EmployeeList(props) {
                                 <NewEmployee showForm={showForm}
                                     setShowForm={setShowForm} reloadData={fetchData} />
                                 :
-                                <button onClick={() => setShowForm(true)}>add
-                                    {/* <Link to={`/employees/new`}>Add employee</Link> */}
-                                </button>
+                                <button onClick={() => setShowForm(true)}>add</button>
                         }
 
                     </div>

@@ -1,9 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
 } from 'react-router-dom';
 import EmployeeList from './EmployeeList'
 import NewEmployee from './NewEmployee'
